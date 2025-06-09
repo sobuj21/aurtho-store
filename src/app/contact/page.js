@@ -20,7 +20,8 @@ export default function ContactPage() {
 
       <main className="container mx-auto px-6 py-16">
         <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-4">Contact Us</h1>
-        <p className="text-lg text-gray-600 text-center mb-12">We'd love to hear from you! Please fill out the form below.</p>
+        {/* CORRECTED LINE BELOW */}
+        <p className="text-lg text-gray-600 text-center mb-12">We&apos;d love to hear from you! Please fill out the form below.</p>
 
         <div className="max-w-xl mx-auto">
           {/* NOTE: This form is for visual purposes. You'll need a service like Formspree to make it work. */}
