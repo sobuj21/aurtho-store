@@ -5,20 +5,20 @@ export default function ProductsPage() {
   return (
     <div className="bg-white">
       {/* Header and Navigation Bar */}
-      <header className="border-b border-gray-200">
-        <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-gray-800">
-            Aurtho
-          </Link>
-          <div className="space-x-6">
-            <Link href="/" className="text-gray-600 hover:text-gray-900">Home</Link>
-            {/* This makes the "Products" link active on this page */}
-            <Link href="/products" className="text-gray-600 hover:text-gray-900 font-bold text-teal-600">Products</Link>
-            <Link href="/about" className="text-gray-600 hover:text-gray-900">About</Link>
-            <Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
-          </div>
-        </nav>
-      </header>
+<header className="border-b border-gray-200">
+  <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+    <Link href="/" className="text-2xl font-bold text-gray-800">
+      Aurtho
+    </Link>
+    <div className="space-x-6">
+      {/* "Home" has been replaced with "Offers" */}
+      <Link href="/offers" className="text-gray-600 hover:text-gray-900">Offers</Link>
+      <Link href="/products" className="text-gray-600 hover:text-gray-900">Products</Link>
+      <Link href="/about" className="text-gray-600 hover:text-gray-900">About</Link>
+      <Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
+    </div>
+  </nav>
+</header>
 
       <main>
         {/* Main Products Section */}

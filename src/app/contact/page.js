@@ -11,10 +11,11 @@ export default function ContactPage() {
       Aurtho
     </Link>
     <div className="space-x-6">
-      <Link href="/" className="text-gray-600 hover:text-gray-900">Home</Link>
+      {/* "Home" has been replaced with "Offers" */}
+      <Link href="/offers" className="text-gray-600 hover:text-gray-900">Offers</Link>
       <Link href="/products" className="text-gray-600 hover:text-gray-900">Products</Link>
       <Link href="/about" className="text-gray-600 hover:text-gray-900">About</Link>
-      <Link href="/contact" className="text-gray-600 hover:text-gray-900 font-bold text-teal-600">Contact</Link>
+      <Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
     </div>
   </nav>
 </header>
