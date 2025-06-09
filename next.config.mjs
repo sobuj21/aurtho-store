@@ -1,13 +1,17 @@
 /** @type {import('next').Config} */
 
-const repo = 'aurtho-store'; // This is the name of your repository
-const assetPrefix = `/${repo}/`; // assetPrefix needs the trailing slash
-const basePath = `/${repo}`;    // basePath must NOT have a trailing slash
+const repo = 'aurtho-store';
+const assetPrefix = `/${repo}/`;
+const basePath = `/${repo}`;
 
 const config = {
   output: 'export',
   assetPrefix: assetPrefix,
   basePath: basePath,
+  // Add this images object to disable optimization
+  images: {
+    unoptimized: true,
+  },
 };
-
+devIndicators: false
 export default config;

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from 'next/link';
 
 // This is the main component for our homepage
 export default function HomePage() {
@@ -7,9 +8,9 @@ export default function HomePage() {
       {/* Header and Navigation Bar */}
       <header className="border-b border-gray-200">
         <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-gray-800">
+          <Link href="/" className="text-2xl font-bold text-gray-800">
             Aurtho
-          </div>
+          </Link>
           <div className="space-x-6">
             <a href="#" className="text-gray-600 hover:text-gray-900">Home</a>
             <a href="#" className="text-gray-600 hover:text-gray-900">Products</a>
@@ -44,38 +45,59 @@ export default function HomePage() {
             {/* Product Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-              {/* Product 1 */}
-              <div className="border border-gray-200 rounded-lg p-4 text-center">
-                <div className="w-full h-64 bg-gray-200 rounded-md mb-4 flex items-center justify-center">
-                  <span className="text-gray-500">Product Image</span>
+              {/* Product 1 - CORRECTED */}
+              <div className="border border-gray-200 rounded-lg p-4 text-center flex flex-col">
+                {/* The new "Image Frame" */}
+                <div className="relative w-full aspect-square rounded-md overflow-hidden mb-4">
+                  <Image
+                    src="/aurtho-store/product1.jpeg"
+                    alt="A beautiful Clock"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800">Product Name 1</h3>
+                {/* Product Info */}
+                <h3 className="text-xl font-semibold text-gray-800">Clasic Clock</h3>
                 <p className="text-gray-600 mt-2">$19.99</p>
-                <button className="mt-4 px-6 py-2 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 text-sm">
+                <button className="mt-auto px-6 py-2 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 text-sm">
                   Add to Cart
                 </button>
               </div>
 
-              {/* Product 2 */}
-              <div className="border border-gray-200 rounded-lg p-4 text-center">
-                <div className="w-full h-64 bg-gray-200 rounded-md mb-4 flex items-center justify-center">
-                  <span className="text-gray-500">Product Image</span>
+              {/* Product 2 - CORRECTED */}
+              <div className="border border-gray-200 rounded-lg p-4 text-center flex flex-col">
+                {/* The new "Image Frame" */}
+                <div className="relative w-full aspect-square rounded-md overflow-hidden mb-4">
+                  <Image
+                    src="/aurtho-store/product2.webp"
+                    alt="Crocodile Pattern Purses"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800">Product Name 2</h3>
+                {/* Product Info */}
+                <h3 className="text-xl font-semibold text-gray-800">Crocodile Pattern Purses</h3>
                 <p className="text-gray-600 mt-2">$24.99</p>
-                <button className="mt-4 px-6 py-2 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 text-sm">
+                <button className="mt-auto px-6 py-2 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 text-sm">
                   Add to Cart
                 </button>
               </div>
 
-              {/* Product 3 */}
-              <div className="border border-gray-200 rounded-lg p-4 text-center">
-                <div className="w-full h-64 bg-gray-200 rounded-md mb-4 flex items-center justify-center">
-                  <span className="text-gray-500">Product Image</span>
+              {/* Product 3 - CORRECTED */}
+              <div className="border border-gray-200 rounded-lg p-4 text-center flex flex-col">
+                {/* The new "Image Frame" */}
+                <div className="relative w-full aspect-square rounded-md overflow-hidden mb-4">
+                  <Image
+                    src="/aurtho-store/product3.jpg"
+                    alt="Engagement Ring"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800">Product Name 3</h3>
+                {/* Product Info */}
+                <h3 className="text-xl font-semibold text-gray-800">Engagement Ring</h3>
                 <p className="text-gray-600 mt-2">$29.99</p>
-                <button className="mt-4 px-6 py-2 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 text-sm">
+                <button className="mt-auto px-6 py-2 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 text-sm">
                   Add to Cart
                 </button>
               </div>
