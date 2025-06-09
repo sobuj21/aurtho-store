@@ -1,17 +1,11 @@
 /** @type {import('next').Config} */
 
-const repo = 'aurtho-store';
-const assetPrefix = `/${repo}/`;
-const basePath = `/${repo}`;
-
 const config = {
   output: 'export',
-  assetPrefix: assetPrefix,
-  basePath: basePath,
-  // Add this images object to disable optimization
+  // The basePath and assetPrefix are no longer needed for a custom domain
   images: {
     unoptimized: true,
   },
 };
-devIndicators: false
+
 export default config;
