@@ -4,30 +4,31 @@ export default function ContactPage() {
   return (
     <div className="bg-white">
       {/* Header and Navigation Bar */}
- {/* Header and Navigation Bar */}
-<header className="border-b border-gray-200">
-  <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-    <Link href="/" className="text-2xl font-bold text-gray-800">
-      Aurtho
-    </Link>
-    <div className="space-x-6">
-      {/* "Home" has been replaced with "Offers" */}
-      <Link href="/offers" className="text-gray-600 hover:text-gray-900">Offers</Link>
-      <Link href="/products" className="text-gray-600 hover:text-gray-900">Products</Link>
-      <Link href="/about" className="text-gray-600 hover:text-gray-900">About</Link>
-      <Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
-    </div>
-  </nav>
-</header>
+      <header className="border-b border-gray-200">
+        <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <Link href="/" className="text-2xl font-bold text-gray-800">
+            Aurtho
+          </Link>
+          <div className="space-x-6">
+            <Link href="/offers" className="text-gray-600 hover:text-gray-900">Offers</Link>
+            <Link href="/products" className="text-gray-600 hover:text-gray-900">Products</Link>
+            <Link href="/about" className="text-gray-600 hover:text-gray-900">About</Link>
+            <Link href="/contact" className="text-gray-600 hover:text-gray-900 font-bold text-teal-600">Contact</Link>
+          </div>
+        </nav>
+      </header>
 
       <main className="container mx-auto px-6 py-16">
         <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-4">Contact Us</h1>
-        {/* CORRECTED LINE BELOW */}
         <p className="text-lg text-gray-600 text-center mb-12">We&apos;d love to hear from you! Please fill out the form below.</p>
 
         <div className="max-w-xl mx-auto">
-          {/* NOTE: This form is for visual purposes. You'll need a service like Formspree to make it work. */}
-          <form className="space-y-6">
+          {/* UPDATED FORM TAG BELOW */}
+          <form 
+            action="https://formspree.io/f/xeokaryb"
+            method="POST"
+            className="space-y-6"
+          >
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
               <input
@@ -36,6 +37,7 @@ export default function ContactPage() {
                 name="name"
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 text-gray-900"
                 placeholder="Your Name"
+                required
               />
             </div>
             <div>
@@ -43,9 +45,10 @@ export default function ContactPage() {
               <input
                 type="email"
                 id="email"
-                name="email"
+                name="email" // This MUST be 'email' for Formspree to work
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 text-gray-900"
                 placeholder="you@example.com"
+                required
               />
             </div>
             <div>
@@ -56,6 +59,7 @@ export default function ContactPage() {
                 rows={4}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 text-gray-900"
                 placeholder="Your message..."
+                required
               ></textarea>
             </div>
             <div>
