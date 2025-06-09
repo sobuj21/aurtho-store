@@ -6,19 +6,20 @@ export default function HomePage() {
   return (
     <div className="bg-white">
       {/* Header and Navigation Bar */}
-      <header className="border-b border-gray-200">
-        <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-gray-800">
-            Aurtho
-          </Link>
-          <div className="space-x-6">
-            <a href="#" className="text-gray-600 hover:text-gray-900">Home</a>
-            <a href="#" className="text-gray-600 hover:text-gray-900">Products</a>
-            <a href="#" className="text-gray-600 hover:text-gray-900">About</a>
-            <Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
-          </div>
-        </nav>
-      </header>
+{/* Header and Navigation Bar */}
+<header className="border-b border-gray-200">
+  <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+    <Link href="/" className="text-2xl font-bold text-gray-800">
+      Aurtho
+    </Link>
+    <div className="space-x-6">
+      <Link href="/" className="text-gray-600 hover:text-gray-900">Home</Link>
+      <Link href="/products" className="text-gray-600 hover:text-gray-900">Products</Link>
+      <Link href="/about" className="text-gray-600 hover:text-gray-900">About</Link>
+      <Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
+    </div>
+  </nav>
+</header>
 
       <main>
         {/* Hero Section */}
