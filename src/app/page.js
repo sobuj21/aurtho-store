@@ -45,12 +45,12 @@ export default function HomePage() {
             {/* Product Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-              {/* Product 1 - NEW & MODERN DESIGN */}
+              {/* Product 1 - CORRECTED PATH */}
               <div className="border border-gray-200 rounded-lg p-4 flex flex-col transition-shadow duration-300 hover:shadow-xl">
                 {/* Image Frame */}
                 <div className="relative w-full aspect-square rounded-md overflow-hidden mb-4">
                   <Image
-                    src="/aurtho-store/product1.jpeg"
+                    src="/product1.jpeg"
                     alt="A beautiful Clock"
                     fill
                     className="object-cover"
@@ -78,12 +78,12 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Product 2 - NEW & MODERN DESIGN */}
+              {/* Product 2 - CORRECTED PATH */}
               <div className="border border-gray-200 rounded-lg p-4 flex flex-col transition-shadow duration-300 hover:shadow-xl">
                 {/* Image Frame */}
                 <div className="relative w-full aspect-square rounded-md overflow-hidden mb-4">
                   <Image
-                    src="/aurtho-store/product2.webp"
+                    src="/product2.webp"
                     alt="Crocodile Pattern Purses"
                     fill
                     className="object-cover"
@@ -111,12 +111,12 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Product 3 - NEW & MODERN DESIGN */}
+              {/* Product 3 - CORRECTED PATH */}
               <div className="border border-gray-200 rounded-lg p-4 flex flex-col transition-shadow duration-300 hover:shadow-xl">
                 {/* Image Frame */}
                 <div className="relative w-full aspect-square rounded-md overflow-hidden mb-4">
                   <Image
-                    src="/aurtho-store/product3.jpg"
+                    src="/product3.jpg"
                     alt="Engagement Ring"
                     fill
                     className="object-cover"
