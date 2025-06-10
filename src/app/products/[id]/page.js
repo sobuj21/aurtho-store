@@ -5,6 +5,13 @@ import Image from 'next/image';
 import { useCart } from '@/contexts/CartContext';
 import { notFound } from 'next/navigation';
 
+// THIS IS THE NEW FUNCTION THAT FIXES THE BUILD ERROR
+export async function generateStaticParams() {
+  return allProducts.map((product) => ({
+    id: product.id,
+  }));
+}
+
 export default function ProductDetailPage({ params }) {
   const { addToCart } = useCart();
   const product = allProducts.find(p => p.id === params.id);
