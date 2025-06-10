@@ -1,6 +1,6 @@
 // src/app/dashboard/layout.js
 import Link from 'next/link';
-import ProtectedRoute from '@/components/ProtectedRoute'; // We reuse the same protection
+import AdminProtectedRoute from '@/components/AdminProtectedRoute'; // Import the new admin protector
 
 function AdminLayout({ children }) {
   return (
@@ -28,11 +28,11 @@ function AdminLayout({ children }) {
   );
 }
 
-// Protect the entire admin dashboard section
+// Protect the entire admin dashboard section with the new component
 export default function ProtectedAdminLayout({ children }) {
   return (
-    <ProtectedRoute>
+    <AdminProtectedRoute>
       <AdminLayout>{children}</AdminLayout>
-    </ProtectedRoute>
+    </AdminProtectedRoute>
   );
 }
