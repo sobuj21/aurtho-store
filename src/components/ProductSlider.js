@@ -1,25 +1,26 @@
 // src/components/ProductSlider.js
 'use client'; 
-
-// We need to import 'useCallback' to fix a code quality warning
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { allProducts } from '../data/products';
 
 export default function ProductSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Filter for products that have an image to show in the slider
   const sliderProducts = allProducts.filter(p => p.image);
 
-  // This function is now wrapped in useCallback to prevent re-creating it on every render
   const goToNext = useCallback(() => {
-    // Guard clause to ensure we don't run this logic if there are no images
     if (sliderProducts.length === 0) return;
     const isLastSlide = currentIndex === sliderProducts.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   }, [currentIndex, sliderProducts.length]);
+
+  useEffect(() => {
+    if (sliderProducts.length > 0) {
+      const timer = setTimeout(goToNext, 5000); 
+      return () => clearTimeout(timer); 
+    }
+  }, [goToNext, sliderProducts.length]);
 
   const goToPrevious = () => {
     if (sliderProducts.length === 0) return;
@@ -28,16 +29,6 @@ export default function ProductSlider() {
     setCurrentIndex(newIndex);
   };
 
-  useEffect(() => {
-    // Only set a timer if there are products to slide through
-    if (sliderProducts.length > 0) {
-      const timer = setTimeout(goToNext, 5000); 
-      return () => clearTimeout(timer); 
-    }
-  }, [goToNext, sliderProducts.length]); // Add sliderProducts.length as a dependency
-
-  // THE MAIN FIX:
-  // If there are no products with images, show a safe placeholder instead of crashing.
   if (sliderProducts.length === 0) {
     return (
       <div className="relative w-full h-full rounded-lg bg-gray-200 flex items-center justify-center">
@@ -45,10 +36,9 @@ export default function ProductSlider() {
       </div>
     );
   }
-  
+
   const currentProduct = sliderProducts[currentIndex];
 
-  // Redundant check for safety, in case something unexpected happens
   if (!currentProduct) {
      return (
       <div className="relative w-full h-full rounded-lg bg-gray-200 flex items-center justify-center">
@@ -57,10 +47,8 @@ export default function ProductSlider() {
     );
   }
 
-  // If a product exists, render the slider
   return (
     <div className="relative w-full h-full rounded-lg overflow-hidden shadow-lg">
-      {/* Slide Image */}
       <div className="w-full h-full">
         <Image
           src={currentProduct.image}
@@ -71,13 +59,11 @@ export default function ProductSlider() {
         />
       </div>
       
-      {/* Overlay Content */}
       <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-8 text-white">
         <h2 className="text-4xl font-bold">{currentProduct.name}</h2>
         <p className="text-xl mt-2">Special Price: ${currentProduct.salePrice || currentProduct.price}</p>
       </div>
 
-      {/* Navigation Arrows */}
       <div
         className="absolute top-1/2 left-4 -translate-y-1/2 cursor-pointer bg-black bg-opacity-50 rounded-full p-2 text-white hover:bg-opacity-75 transition-opacity"
         onClick={goToPrevious}
