@@ -1,21 +1,36 @@
 // src/app/page.js
 'use client'; 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { allProducts } from '@/data/products';
 import ProductCard from '@/components/ProductCard';
 import CategoryList from '@/components/CategoryList';
 import ProductSlider from '@/components/ProductSlider';
-
-const INITIAL_DISPLAY_COUNT = 8;
+import { db } from '@/lib/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 export default function HomePage() {
-  const [displayCount, setDisplayCount] = useState(INITIAL_DISPLAY_COUNT);
-  const saleProducts = allProducts.filter(p => p.onSale);
-  const regularProducts = allProducts.filter(p => !p.onSale);
+  // In a real app, you would fetch products from Firestore here.
+  // For now, we continue using the local data file.
+  const [products, setProducts] = useState(allProducts);
+  const [displayCount, setDisplayCount] = useState(8);
+
+  const saleProducts = products.filter(p => p.onSale);
+  const regularProducts = products.filter(p => !p.onSale);
 
   const loadMoreProducts = () => {
-    setDisplayCount(prevCount => prevCount + INITIAL_DISPLAY_COUNT);
+    setDisplayCount(prevCount => prevCount + 8);
+  };
+
+  // Simple shuffle function to randomize products
+  const shuffleArray = (array) => {
+    let currentIndex = array.length, randomIndex;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
   };
 
   return (
@@ -40,7 +55,7 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-            {saleProducts.slice(0, 4).map(product => (
+            {shuffleArray(saleProducts).slice(0, 4).map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
@@ -51,7 +66,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-800 mb-6">All Products</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {regularProducts.slice(0, displayCount).map(product => (
+            {shuffleArray(regularProducts).slice(0, displayCount).map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
