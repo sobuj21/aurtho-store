@@ -1,13 +1,13 @@
 // src/contexts/AuthContext.js
 'use client';
-
 import React, { useContext, useState, useEffect } from 'react';
 import { auth } from '../lib/firebase';
 import { 
   onAuthStateChanged, 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
-  signOut 
+  signOut,
+  sendEmailVerification
 } from 'firebase/auth';
 
 const AuthContext = React.createContext();
@@ -20,8 +20,10 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  function signup(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+  async function signup(email, password) {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    await sendEmailVerification(userCredential.user);
+    return userCredential;
   }
 
   function login(email, password) {
@@ -37,16 +39,10 @@ export function AuthProvider({ children }) {
       setCurrentUser(user);
       setLoading(false);
     });
-
     return unsubscribe;
   }, []);
 
-  const value = {
-    currentUser,
-    signup,
-    login,
-    logout
-  };
+  const value = { currentUser, signup, login, logout, loading };
 
   return (
     <AuthContext.Provider value={value}>
