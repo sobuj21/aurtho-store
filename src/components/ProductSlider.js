@@ -14,7 +14,8 @@ export default function ProductSlider() {
 
   // This function is now wrapped in useCallback to prevent re-creating it on every render
   const goToNext = useCallback(() => {
-    if (sliderProducts.length === 0) return; // Don't do anything if no images
+    // Guard clause to ensure we don't run this logic if there are no images
+    if (sliderProducts.length === 0) return;
     const isLastSlide = currentIndex === sliderProducts.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
@@ -28,18 +29,28 @@ export default function ProductSlider() {
   };
 
   useEffect(() => {
-    const timer = setTimeout(goToNext, 5000); 
-    return () => clearTimeout(timer); 
-  }, [goToNext]); // The dependency is now correctly set
+    // Only set a timer if there are products to slide through
+    if (sliderProducts.length > 0) {
+      const timer = setTimeout(goToNext, 5000); 
+      return () => clearTimeout(timer); 
+    }
+  }, [goToNext, sliderProducts.length]); // Add sliderProducts.length as a dependency
 
-  // THE MAIN FIX IS HERE:
-  // We get the current product and check if it exists before trying to use it.
+  // THE MAIN FIX:
+  // If there are no products with images, show a safe placeholder instead of crashing.
+  if (sliderProducts.length === 0) {
+    return (
+      <div className="relative w-full h-full rounded-lg bg-gray-200 flex items-center justify-center">
+        <p className="text-gray-500">No Product Images to Display</p>
+      </div>
+    );
+  }
+  
   const currentProduct = sliderProducts[currentIndex];
 
+  // Redundant check for safety, in case something unexpected happens
   if (!currentProduct) {
-    // If no product is found (e.g., during build or if there are no images),
-    // show a safe placeholder instead of crashing.
-    return (
+     return (
       <div className="relative w-full h-full rounded-lg bg-gray-200 flex items-center justify-center">
         <p className="text-gray-500">Loading Products...</p>
       </div>
